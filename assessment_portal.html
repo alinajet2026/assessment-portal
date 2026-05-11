@@ -597,50 +597,12 @@ function renderStats(){
   var recSim=d.filter(r=>r.rec==='sim').length;
   var recNao=d.filter(r=>r.rec==='nao').length;
   var aguard=d.filter(r=>r.rec==='wait').length;
-  var promovidos=d.filter(r=>r.resultado==='Promovido').length;
-  var reprovados=d.filter(r=>r.resultado==='Reprovado').length;
-  var override=d.filter(r=>r.rec==='nao'&&r.resultado==='Promovido').length;
-  var pct=function(n,t){return t?Math.round(n/t*100):0;};
-  var scoreCell=function(v){return v==null?'<span style="opacity:.4">—</span>':'<span style="font-weight:600;color:'+(v>=3?'#4ade80':v>=2.5?'#fbbf24':'#f87171')+'">'+v.toFixed(2)+'</span>';};
-  var recBadge=function(r){
-    if(r==='sim')return '<span class="stats-rec rec-sim">✅ Recomendado</span>';
-    if(r==='nao')return '<span class="stats-rec rec-nao">⚠️ Não recomendado</span>';
-    return '<span class="stats-rec rec-wait">🔄 Aguardando</span>';
-  };
-  var resBadge=function(r){
-    if(r==='Promovido')return '<span class="res-promo">🎉 Promovido</span>';
-    if(r==='Reprovado')return '<span class="res-rep">❌ Reprovado</span>';
-    return '<span style="opacity:.5">—</span>';
-  };
   document.getElementById('statsPanel').innerHTML=
     '<div class="stats-kpi-row">'+
       '<div class="stats-kpi kpi-blue"><div class="stats-kpi-val">'+done.length+'</div><div class="stats-kpi-lbl">Assessments concluídos</div></div>'+
       '<div class="stats-kpi kpi-green"><div class="stats-kpi-val">'+recSim+'</div><div class="stats-kpi-lbl">Recomendados L&D</div></div>'+
       '<div class="stats-kpi kpi-yellow"><div class="stats-kpi-val">'+recNao+'</div><div class="stats-kpi-lbl">Não recomendados L&D</div></div>'+
       '<div class="stats-kpi kpi-blue"><div class="stats-kpi-val">'+aguard+'</div><div class="stats-kpi-lbl">Aguardando</div></div>'+
-    '</div>'+
-    '<div class="stats-section-title">Resultado Final</div>'+
-    '<div class="stats-bar-row"><div class="stats-bar-label">🎉 Promovidos</div><div class="stats-bar-track"><div class="stats-bar-fill" style="width:'+pct(promovidos,done.length)+'%;background:#4ade80;"></div></div><div class="stats-bar-count">'+promovidos+'</div></div>'+
-    '<div class="stats-bar-row"><div class="stats-bar-label">❌ Reprovados</div><div class="stats-bar-track"><div class="stats-bar-fill" style="width:'+pct(reprovados,done.length)+'%;background:#f87171;"></div></div><div class="stats-bar-count">'+reprovados+'</div></div>'+
-    '<div class="stats-section-title">Candidatos Avaliados</div>'+
-    '<table class="stats-table">'+
-      '<thead><tr><th>Nome</th><th>Cargo proposto</th><th>Espec.</th><th>Outras</th><th>360° média</th><th>Recom. L&D</th><th>Resultado</th></tr></thead>'+
-      '<tbody>'+d.map(function(r){
-        return '<tr>'+
-          '<td>'+r.nome+'</td>'+
-          '<td style="color:var(--text-muted)">'+r.cargo+'</td>'+
-          '<td>'+scoreCell(r.espScore)+'</td>'+
-          '<td>'+scoreCell(r.outrasScore)+'</td>'+
-          '<td>'+scoreCell(r.media360)+'</td>'+
-          '<td>'+recBadge(r.rec)+'</td>'+
-          '<td>'+resBadge(r.resultado)+'</td>'+
-        '</tr>';
-      }).join('')+
-      '</tbody>'+
-    '</table>'+
-    '<div class="stats-insight">'+
-      '<strong>Nota:</strong> Em '+override+' caso(s), o gestor promoveu o colaborador mesmo sem recomendação do L&D. '+
-      'Taxa de alinhamento L&D ↔ Gestor: <strong>'+pct(done.length-override,done.length)+'%</strong>.'+
     '</div>';
 }
 function showOverview(){
