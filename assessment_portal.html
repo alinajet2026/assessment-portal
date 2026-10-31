@@ -202,6 +202,34 @@
   .comp-section { margin-bottom:12px; }
   .comp-section-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--text); padding:12px 16px; background:var(--surface); border:1.5px solid var(--border); border-radius:10px; display:flex; align-items:center; gap:8px; margin-bottom:0; box-shadow:0 1px 4px rgba(37,99,235,.05); cursor:pointer; user-select:none; transition:all .2s; justify-content:space-between; }
   .comp-section-title:hover { border-color:var(--accent); background:var(--blue-light); }
+  /* --- Análise de Competências --- */
+  .an-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; }
+  .an-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:16px 18px; }
+  .an-head { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+  .an-ico { font-size:20px; }
+  .an-name { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; color:var(--text); }
+  .an-sample { font-size:11px; color:var(--text-muted); margin-bottom:14px; }
+  .an-pair { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
+  .an-box { background:var(--surface2); border-radius:9px; padding:10px 12px; }
+  .an-box-lbl { font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-muted); font-weight:700; margin-bottom:3px; }
+  .an-box-val { font-family:'Syne',sans-serif; font-size:24px; font-weight:700; line-height:1.1; }
+  .an-box-note { font-size:10px; color:var(--danger); margin-top:2px; font-weight:600; }
+  .an-sub { font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-muted); font-weight:700; margin:12px 0 7px; }
+  .an-row { display:grid; grid-template-columns:1fr 86px 34px; align-items:center; gap:8px; margin-bottom:5px; font-size:11.5px; color:var(--text); }
+  .an-bar { position:relative; height:7px; background:#eef2fb; border-radius:4px; overflow:hidden; }
+  .an-bar i { position:absolute; left:0; top:0; bottom:0; border-radius:4px; display:block; }
+  .an-bar::after { content:''; position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:#94a3b8; }
+  .an-val { font-weight:700; font-size:11.5px; text-align:right; }
+  .an-li { font-size:11.5px; color:var(--text); display:flex; justify-content:space-between; gap:10px; padding:4px 0; border-bottom:1px dashed var(--border); }
+  .an-li:last-child { border-bottom:0; }
+  .an-li b { font-weight:700; white-space:nowrap; }
+  .an-note { background:#fffbeb; border:1.5px solid #fde68a; border-radius:12px; padding:14px 18px; margin-top:14px; }
+  .an-note-t { font-weight:700; font-size:12.5px; color:#92400e; margin-bottom:5px; }
+  .an-note-p { font-size:12px; color:#78350f; line-height:1.6; }
+  .an-keys { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin-top:14px; }
+  .an-key { background:var(--surface); border:1.5px solid var(--border); border-left:4px solid var(--accent); border-radius:10px; padding:12px 14px; }
+  .an-key-t { font-weight:700; font-size:12.5px; color:var(--text); margin-bottom:4px; }
+  .an-key-p { font-size:11.5px; color:var(--text-muted); line-height:1.55; }
   .comp-chevron { font-size:10px; opacity:.5; transition:transform .25s; flex-shrink:0; }
   .comp-section.collapsed .comp-chevron { transform:rotate(-90deg); }
   .comp-section-body { overflow:hidden; transition:all .25s; }
@@ -389,6 +417,93 @@
         <button class="stats-tab-btn" onclick="toggleStats()">📊 Estatísticas L&amp;D</button>
       </div>
       <div id="statsPanel"></div>
+
+      <div class="section-title">Análise de Competências</div>
+      <div style="font-size:11.5px;color:var(--text-muted);margin:-6px 0 12px;line-height:1.6;">
+        Baseado nas notas de cada pergunta das entrevistas por competências · 19 fichas · 803 respostas avaliadas · mar–set 2026.
+        Escala 1–4 (1 = não respondeu · 4 = resposta completa). Limite mínimo para o cargo: <b>2,5</b> — marcado como linha cinza nas barras.
+      </div>
+
+      <div class="an-grid">
+        <div class="an-card">
+          <div class="an-head"><span class="an-ico">🚚</span><span class="an-name">Logística</span></div>
+          <div class="an-sample">13 candidatos · 528 respostas · todos com as duas partes preenchidas</div>
+          <div class="an-pair">
+            <div class="an-box">
+              <div class="an-box-lbl">Fora da especialização</div>
+              <div class="an-box-val" style="color:var(--danger)">2,96</div>
+            </div>
+            <div class="an-box">
+              <div class="an-box-lbl">Especialização</div>
+              <div class="an-box-val" style="color:var(--success)">3,38</div>
+            </div>
+          </div>
+          <div class="an-sub">Média por área</div>
+          <div class="an-row"><span>Recrutamento</span><span class="an-bar"><i style="width:58%;background:var(--danger)"></i></span><span class="an-val">2,74</span></div>
+          <div class="an-row"><span>RH</span><span class="an-bar"><i style="width:66%;background:var(--warning)"></i></span><span class="an-val">2,98</span></div>
+          <div class="an-row"><span>Segurança do Trabalho</span><span class="an-bar"><i style="width:69%;background:var(--warning)"></i></span><span class="an-val">3,07</span></div>
+          <div class="an-row"><span>Especialização</span><span class="an-bar"><i style="width:79%;background:var(--success)"></i></span><span class="an-val">3,38</span></div>
+          <div class="an-sub">Competências mais fracas · % de respostas abaixo do limite</div>
+          <div class="an-li"><span>Avaliação de competências</span><b>2,72 · 38%</b></div>
+          <div class="an-li"><span>Habilidades de entrevista e feedback</span><b>2,75 · 43%</b></div>
+          <div class="an-li"><span>Planejamento e controle do tempo de trabalho</span><b>2,86 · 29%</b></div>
+          <div class="an-li"><span>Normas sanitárias e contra incêndio</span><b>2,88 · 41%</b></div>
+          <div class="an-li"><span>Advertências disciplinares</span><b>2,92 · 19%</b></div>
+        </div>
+
+        <div class="an-card">
+          <div class="an-head"><span class="an-ico">🔧</span><span class="an-name">Centro de Serviço</span></div>
+          <div class="an-sample">6 candidatos · 275 respostas · especialização medida em apenas 2 pessoas</div>
+          <div class="an-pair">
+            <div class="an-box">
+              <div class="an-box-lbl">Fora da especialização</div>
+              <div class="an-box-val" style="color:var(--success)">3,39</div>
+            </div>
+            <div class="an-box">
+              <div class="an-box-lbl">Especialização</div>
+              <div class="an-box-val" style="color:var(--danger)">2,74</div>
+              <div class="an-box-note">apenas 2 pessoas</div>
+            </div>
+          </div>
+          <div class="an-sub">Média por área</div>
+          <div class="an-row"><span>Recrutamento</span><span class="an-bar"><i style="width:74%;background:var(--warning)"></i></span><span class="an-val">3,21</span></div>
+          <div class="an-row"><span>RH</span><span class="an-bar"><i style="width:80%;background:var(--success)"></i></span><span class="an-val">3,39</span></div>
+          <div class="an-row"><span>Segurança do Trabalho</span><span class="an-bar"><i style="width:83%;background:var(--success)"></i></span><span class="an-val">3,48</span></div>
+          <div class="an-row"><span>Especialização</span><span class="an-bar"><i style="width:58%;background:var(--danger)"></i></span><span class="an-val">2,74</span></div>
+          <div class="an-sub">Mais fracas fora da especialização</div>
+          <div class="an-li"><span>Advertências disciplinares (legislação)</span><b>2,67 · 33%</b></div>
+          <div class="an-li"><span>Planejamento e controle do tempo de trabalho</span><b>3,06 · 39%</b></div>
+          <div class="an-li"><span>Teamtailor</span><b>3,08 · 25%</b></div>
+          <div class="an-li"><span>Habilidades de entrevista e feedback</span><b>3,17 · 28%</b></div>
+          <div class="an-li"><span>Ações em situações de emergência</span><b>3,25 · 25%</b></div>
+        </div>
+      </div>
+
+      <div class="an-note">
+        <div class="an-note-t">⚠️ Ressalva sobre a amostra do Centro de Serviço</div>
+        <div class="an-note-p">
+          A matriz de especialização foi preenchida para apenas <b>2 dos 6 candidatos</b>, que concentram 90% das respostas dessa parte —
+          os outros quatro responderam 2 perguntas cada. Esses dois também apresentam a parte geral mais baixa do grupo
+          (2,89 contra 3,68 dos demais), ou seja, a amostra é enviesada. Portanto <b>2,74 reflete essa dupla, não o nível do departamento</b> —
+          para avaliar a especialização do SC é preciso medi-la nos demais candidatos.
+        </div>
+      </div>
+
+      <div class="an-keys">
+        <div class="an-key" style="border-left-color:var(--danger)">
+          <div class="an-key-t">Na Logística, o ponto fraco é a gestão de pessoas</div>
+          <div class="an-key-p">A profissão é dominada — direção, frota, estacionamentos: tudo acima de 3,3. Falha a camada gerencial do cargo: seleção e avaliação de candidatos, segurança do trabalho, controle da jornada.</div>
+        </div>
+        <div class="an-key" style="border-left-color:var(--warning)">
+          <div class="an-key-t">Recrutamento é a área mais fraca da Logística</div>
+          <div class="an-key-p">43% das respostas sobre condução de entrevistas ficaram abaixo do limite, e nenhum dos 13 candidatos passou essa competência de forma limpa.</div>
+        </div>
+        <div class="an-key" style="border-left-color:var(--accent)">
+          <div class="an-key-t">Parte das falhas não é falta de conhecimento</div>
+          <div class="an-key-p">Não existe lista de competências entregue para avaliar candidatos, e falta acesso ao Monitor e ao EMC system. Isso não se resolve com treinamento — exige processo e liberação de acessos antes da avaliação.</div>
+        </div>
+      </div>
+
       <div class="section-title">Materiais de Treinamento</div>
       <div class="dept-cards">
         <a href="https://docs.google.com/document/d/1_9mnCiy5SmbU2lIml1k_1f2JJYZQM7MseTp-QckWI-E/edit?tab=t.0" target="_blank" style="text-decoration:none;">
